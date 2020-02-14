@@ -1,0 +1,48 @@
+@using Microsoft.AspNetCore.Http;
+@model Transaction
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Account</title>
+</head>
+<body>
+    <a href="/logout">Logout</a><br>
+    <h1>Welcome, @Context.Session.GetString("Logged_UserName")</h1>
+    <p>Current Balance: @ViewBag.Balance</p>
+
+    <h3>Deposit</h3>
+    <form asp-action="MakeTransaction" method="post">
+        <input type="number" asp-for="Amount">
+        <button type="submit">Submit</button>
+        <span asp-validation-for="Amount">@TempData["ErrorMessage"]</span>
+    </form>
+    <h3>Withdraw</h3>
+    <form asp-action="MakeTransaction" method="post">
+        <input type="number" asp-for="Amount">
+        <button type="submit">Submit</button>
+        <span asp-validation-for="Amount">@TempData["ErrorMessage"]</span>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th scope="col">Amount</th>
+            <th scope="col">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(Transaction transaction in @ViewBag.AllTrans)
+            {
+                <tr>
+                <td>@transaction.Amount</td>
+                <td>@transaction.CreatedAt</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
