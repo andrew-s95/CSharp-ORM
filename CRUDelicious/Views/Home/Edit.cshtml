@@ -1,0 +1,45 @@
+@model Dish
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit Dish</title>
+</head>
+<body>
+    <a href="/">Home</a><br>
+    <h1>Edit: @ViewBag.EditDish.Name</h1><br>
+
+    <form asp-action="EditDish" asp-controller="Home" method="POST">
+    <label for="Chef">Chef's Name</label>
+    <span asp-validation-for="Chef"></span>
+    <input type="text" class="form-control" asp-for="Chef"><br>
+
+    <label for="Name">Name of Dish</label>
+    <span asp-validation-for="Name"></span>
+    <input type="text" asp-for="Name"><br>
+    
+    <label for="Calories"># of Calories</label>
+    <span asp-validation-for="Calories"></span>
+    <input type="text" asp-for="Calories"><br>
+
+    <label for="Tastiness">Tastiness</label>
+    <span asp-validation-for="Tastiness"></span>
+    <select asp-for="Tastiness">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select><br>
+
+    <label for="Description">Description</label>
+    <span asp-validation-for="Description"></span>
+    <textarea rows="5" asp-for="Description"></textarea><br>       
+
+    <button type="submit">Submit</button>
+</form>
+    
+</body>
+</html>
