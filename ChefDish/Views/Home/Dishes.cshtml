@@ -1,0 +1,38 @@
+@model Dish
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dishes</title>
+</head>
+<body>
+    <h1><a href="/">Chefs</a> | <a href="/dishes">Dishes</a></h1>
+    <a href="chef/addpage">Add a Chef</a><br>
+    <a href="dishes/add">Add a Dish</a><br>
+    <h3>Yum, take a look at our tasty dishes!</h3>
+    <table class="table col-lg-8 mx-auto">
+    <thead>
+        <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Chef</th>
+        <th scope="col">Tastiness</th>
+        <th scope="col">Calories</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Dish dish in @ViewBag.dishes)
+        {
+            <tr>
+                <td>@dish.DishName</td>
+                <td>@dish.Creator.FirstName</td>
+                <td>@dish.Tastiness</td>
+                <td>@dish.Calories</td>
+            </tr>
+        }
+    </tbody>
+    </table>
+    
+</body>
+</html>
