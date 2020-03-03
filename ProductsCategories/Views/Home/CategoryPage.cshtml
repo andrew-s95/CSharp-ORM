@@ -1,0 +1,34 @@
+﻿@using ProductsCategories.Models
+@model Category
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Main</title>
+</head>
+<body>
+    <a href="/">Products Page</a>
+    <h1>@Model.Name</h1><br>
+    <h3>Products: </h3><br>
+    <ul>
+        @foreach(var products in Model.Associations)
+        {
+            <li>@products.Product.Name</li>
+        }
+    </ul>
+
+    <h3>Add Product:</h3>
+    <form asp-action="AssociateProduct" asp-controller="Home" method="post">
+        <input type="hidden" name="CategoryId" value="@Model.CategoryId">
+        <select name="ProductId" class="form-control">
+        @foreach(Product prod in @ViewBag.excluded)
+        {
+            <option value="@prod.ProductId">@prod.Name</option>
+        }
+        </select>
+    </form>
+
+</body>
+</html> 
